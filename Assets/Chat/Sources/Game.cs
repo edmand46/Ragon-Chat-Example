@@ -14,16 +14,6 @@ public class Game : MonoBehaviour, IRagonListener
     RagonNetwork.Connect();
   }
 
-  public void OnAuthorizationSuccess(RagonClient client, string playerId, string playerName)
-  {
-    RagonNetwork.Session.CreateOrJoin("ChatRoom", 1, 20);
-  }
-
-  public void OnAuthorizationFailed(RagonClient client, string message)
-  {
-    
-  }
-
   public void OnConnected(RagonClient client)
   {
     var playerName = $"Player {Random.Range(1000, 2000)}";
@@ -34,25 +24,35 @@ public class Game : MonoBehaviour, IRagonListener
   {
   
   }
-
-  public void OnFailed(RagonClient client, string message)
-  {
   
+  public void OnAuthorizationSuccess(RagonClient client, string playerId, string playerName)
+  {
+    RagonNetwork.Session.CreateOrJoin("ChatRoom", 1, 20);
+  }
+  
+  public void OnLevel(RagonClient client, string sceneName)
+  {
+    RagonNetwork.Room.SceneLoaded();
+  }
+
+  public void OnAuthorizationFailed(RagonClient client, string message)
+  {
+    
   }
 
   public void OnJoined(RagonClient client)
   {
     
   }
+  
+  public void OnFailed(RagonClient client, string message)
+  {
+  
+  }
 
   public void OnLeft(RagonClient client)
   {
     
-  }
-
-  public void OnLevel(RagonClient client, string sceneName)
-  {
-    RagonNetwork.Room.SceneLoaded();
   }
 
   public void OnOwnershipChanged(RagonClient client, RagonPlayer player)
