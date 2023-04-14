@@ -16,7 +16,7 @@ public class Game : MonoBehaviour, IRagonListener
 
   public void OnAuthorizationSuccess(RagonClient client, string playerId, string playerName)
   {
-    RagonNetwork.Session.CreateOrJoin("Chat", 1, 20);
+    RagonNetwork.Session.CreateOrJoin("ChatRoom", 1, 20);
   }
 
   public void OnAuthorizationFailed(RagonClient client, string message)
